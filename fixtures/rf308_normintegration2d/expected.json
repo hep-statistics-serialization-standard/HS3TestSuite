@@ -46,10 +46,8 @@
         "sigmax": 3.0,
         "sigmay": 2.0,
         "x": 0.0,
-        "x_lowbound": -10.0,
         "x_prime": 0.0,
         "y": 0.0,
-        "y_lowbound": -10.0,
         "y_prime": 0.0
       },
       "scan_parameter": "meanx",

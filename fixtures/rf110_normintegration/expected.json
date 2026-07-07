@@ -40,7 +40,6 @@
         "mean": -2.0,
         "sigma": 3.0,
         "x": 0.0,
-        "x_lowbound": -10.0,
         "x_prime": 0.0
       },
       "scan_parameter": "mean",

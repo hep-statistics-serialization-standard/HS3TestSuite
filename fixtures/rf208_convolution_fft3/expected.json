@@ -25,11 +25,11 @@
         "type": "pointwise_comp"
       },
       "expected": [
-        NaN,
-        NaN,
-        NaN,
-        NaN,
-        NaN
+        642.9671702519754,
+        179.2167171733945,
+        0.0,
+        180.48739257037414,
+        792.5324315959424
       ],
       "id": "twice_delta_nll_scan",
       "kind": "twice_delta_nll_scan",

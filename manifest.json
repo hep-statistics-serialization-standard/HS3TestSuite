@@ -27,8 +27,8 @@
         ]
       },
       "hashes": {
-        "canonical_sha256": "99cbfec67c5c5e55acececcb189e0646e217bf52ec1aeef30725ed7eab2aac16",
-        "sha256": "286f05a2f73a5468a626d030135a030502c3c3ef8fc01254d8840ae543402fb6"
+        "canonical_sha256": "a9804c2ebd3485c9ec07bc462f00a2cc99d92eef67e5e622c176d748778e7254",
+        "sha256": "1e7d0156140f453645dc4e9f6f2ce8d28335012e04d02a9e19ebf16bdba77378"
       },
       "path": "fixtures/rf101_basics",
       "tags": [
@@ -59,15 +59,15 @@
         ],
         "types": [
           "gaussian_dist",
+          "generic",
           "generic_dist",
-          "generic_function",
           "product_domain",
           "unbinned"
         ]
       },
       "hashes": {
-        "canonical_sha256": "ab66b0af2e0c5cb7374101157857a8d6ca2947e544122fdee049c3e02cede482",
-        "sha256": "e6ceec54c9636211039d3271abcaed216de35c19b41d104c07a7a836bf9b4ad5"
+        "canonical_sha256": "a4c93fcbc3b25424b5f1070b470b2e25c16ee089efd5dd22ab69327e63330d7c",
+        "sha256": "1cfda0fd9abc19e91288c6be26f6df49358001cd1e53ce5098938f35900a3423"
       },
       "path": "fixtures/rf103_interprfuncs",
       "tags": [
@@ -105,8 +105,8 @@
         ]
       },
       "hashes": {
-        "canonical_sha256": "dace00dbd6cad808d8c5d05ea0477ec52d1bdf5889e25c8fcd6995229af00874",
-        "sha256": "dace00dbd6cad808d8c5d05ea0477ec52d1bdf5889e25c8fcd6995229af00874"
+        "canonical_sha256": "7b2f00fad6ffac62aba155aa65e20f1740d5cdaa18893e8c1bd16a5df013e80f",
+        "sha256": "7b2f00fad6ffac62aba155aa65e20f1740d5cdaa18893e8c1bd16a5df013e80f"
       },
       "path": "fixtures/rf110_normintegration",
       "tags": [
@@ -143,8 +143,8 @@
         ]
       },
       "hashes": {
-        "canonical_sha256": "9303f235a17453b5639e703b2e71965b34b77ff242225a00786a33559a31cd36",
-        "sha256": "151e53533e5b2d7f04c67bc791fc7c4cdf08d9f032b2936aba6d182feb7fa668"
+        "canonical_sha256": "c9d661e22952eac3deb9517322747016f8056ef57c8d559f95bb0591e68b98e6",
+        "sha256": "28c451f49d65ab1977a44a2e41c05828437332e12334bb674c0d956953b74fb3"
       },
       "path": "fixtures/rf111_derivatives",
       "tags": [
@@ -182,8 +182,8 @@
         ]
       },
       "hashes": {
-        "canonical_sha256": "fcee32411760a04fd97f14e201f1d7a411cf49ccba43dfaad1bbbcb66714365b",
-        "sha256": "fcee32411760a04fd97f14e201f1d7a411cf49ccba43dfaad1bbbcb66714365b"
+        "canonical_sha256": "360ce14c5ec644c6ecee02d3181e2eb85ab7dbb860d1cbf992bfdd2953df06b6",
+        "sha256": "360ce14c5ec644c6ecee02d3181e2eb85ab7dbb860d1cbf992bfdd2953df06b6"
       },
       "path": "fixtures/rf203_ranges",
       "tags": [
@@ -224,8 +224,8 @@
         ]
       },
       "hashes": {
-        "canonical_sha256": "daefce0ebc9b63b6b6104eb5f902b0be1a0b431545c91f1d17293b184370cae5",
-        "sha256": "cd104014e6bdbce3b36fb68d4489570983eb08458ce2ed3b57c9338c90d73254"
+        "canonical_sha256": "4bbc1c728018c30eb9688730b847a3a372d5099c4465f0961a20ad45269a1f21",
+        "sha256": "82563f35b9a022d05a358cea1ea8eca3a4e909b3a04827c3b6e1888e6172d6a5"
       },
       "path": "fixtures/rf207_comptools",
       "tags": [
@@ -254,7 +254,7 @@
           "unbinned"
         ],
         "types": [
-          "fft_conv_pdf",
+          "fft_convolution_dist",
           "gaussian_dist",
           "landau_dist",
           "product_domain",
@@ -262,8 +262,8 @@
         ]
       },
       "hashes": {
-        "canonical_sha256": "45de30c87ad9bcccbddf0bc79c29fc2f4b761f4c80a1cb55d1c863bba82e6e98",
-        "sha256": "ed1867cf4bc61a62943cb8d0ec7fd349310652dbc0963a73b8543e80ac2b5669"
+        "canonical_sha256": "097a76b8a6f226621cdefc3f9d583501deb00a8513bd8e42b424c411003ec158",
+        "sha256": "79d71f217ac6ae8180e34a86e7ab55709a958dc78805f6fe1996d936cdd130af"
       },
       "path": "fixtures/rf208_convolution_fft3",
       "tags": [
@@ -299,7 +299,7 @@
         ],
         "types": [
           "decay_dist",
-          "gauss_model_function",
+          "gauss_resolution_model",
           "mixture_model",
           "product_domain",
           "truth_model_function",
@@ -307,8 +307,8 @@
         ]
       },
       "hashes": {
-        "canonical_sha256": "b4819923219db2b5c92f77af1bbfb0f202110c9fd17d31004de507f5f458c774",
-        "sha256": "e82dc7485236e6c47045385a4c426a7b9a9d63d3c844af806669f65612879a7d"
+        "canonical_sha256": "1426ade0d19f4122e665a83bdd92849df49b91c0fa3b12f065bc209223397e22",
+        "sha256": "c328ea4e636468f46ea1f54f530968772a5ed532c00ac8c2cfd37f3b31d22ec0"
       },
       "path": "fixtures/rf209_anaconv",
       "tags": [
@@ -339,17 +339,17 @@
           "unbinned"
         ],
         "types": [
-          "fft_conv_pdf",
+          "fft_convolution_dist",
           "gaussian_dist",
+          "generic",
           "generic_dist",
-          "generic_function",
           "product_domain",
           "unbinned"
         ]
       },
       "hashes": {
-        "canonical_sha256": "8178c1318e3feb3d00d14be3bd6680787d5277dc154e59c3ae9c416c4dc0eb6b",
-        "sha256": "8178c1318e3feb3d00d14be3bd6680787d5277dc154e59c3ae9c416c4dc0eb6b"
+        "canonical_sha256": "fe7733f2bd0c8d64a905b4a1b09033183e18e2f3b2ed2573271a4e8dac4301d6",
+        "sha256": "fe7733f2bd0c8d64a905b4a1b09033183e18e2f3b2ed2573271a4e8dac4301d6"
       },
       "path": "fixtures/rf210_angularconv",
       "tags": [
@@ -386,8 +386,8 @@
         ]
       },
       "hashes": {
-        "canonical_sha256": "504d8642ab5b43f866abcf1fead693311edb7e8bfdabbe67763c2fe2047adf54",
-        "sha256": "aa9af351c6b3e67cbcf50f3e006accd0493a75f83145761285313dd8fa6f93f5"
+        "canonical_sha256": "faf09498791a8501d2f1e6697af2e6a4ddc813daea86450a713cde475ba83691",
+        "sha256": "3a72dae1dc403ef40d73d020ab6cc0975251bc0103ffccf8412adeb502ed711d"
       },
       "path": "fixtures/rf301_composition",
       "tags": [
@@ -418,7 +418,7 @@
         ],
         "types": [
           "gaussian_dist",
-          "generic_function",
+          "generic",
           "polynomial",
           "product",
           "product_domain",
@@ -427,8 +427,8 @@
         ]
       },
       "hashes": {
-        "canonical_sha256": "6efdbf4037c8f34a5f7b864e1c8e1a85e67b013a8cf796115fa9d33a8617da6e",
-        "sha256": "2a4d769a4be16bdc9be0527797fcd67f68a652d98c5a55beba7c636fb4c2b30f"
+        "canonical_sha256": "40faccb931bf2f2fd52657394f7f2c078df0a7f795b834a4e3c5b10b9a5afec0",
+        "sha256": "3cabafe5653bd52e19ac2b95fcab2c1f0333685840acff5cc8a1cea55e125cb1"
       },
       "path": "fixtures/rf302_utilfuncs",
       "tags": [
@@ -465,8 +465,8 @@
         ]
       },
       "hashes": {
-        "canonical_sha256": "ed71edd7a716d2927775cf7d8bd29121b7edc0e8df57326e4268c38365f04995",
-        "sha256": "103ff1538d322e3d2aab1d9dc55cb2e9d3d18dac232c6340bbabb8f97ba5b55a"
+        "canonical_sha256": "0778d49d556f816bac76ab677f0b6c38b1667975389b6aa9386e6ba95155c4bd",
+        "sha256": "70599b464361e9f167a9c7d35d5e04669c2bb7c6f770faaa627335c2b1ca1822"
       },
       "path": "fixtures/rf303_conditional",
       "tags": [
@@ -502,8 +502,8 @@
         ]
       },
       "hashes": {
-        "canonical_sha256": "2ca8bd7a18203b89674d4677ab55a133a2484ca57f0a8be13ae1e2cdf1d9115b",
-        "sha256": "57e25f9f50e13ea0faa75b49b01aac4658a35766198640c5d28cf4befd463b07"
+        "canonical_sha256": "235dd17f68d9e8875ecee5daa5e37a183302e503f5fe3527ca938f2e316783cb",
+        "sha256": "e35341102c5f30a18bb355347edb99a05bf7502bfbe2281a291c769f82c13019"
       },
       "path": "fixtures/rf304_uncorrprod",
       "tags": [
@@ -542,8 +542,8 @@
         ]
       },
       "hashes": {
-        "canonical_sha256": "3ce1dbc206ada3037821924bfa147ebe23df8e196c33ec9da7138ba52dc58e8e",
-        "sha256": "3ce1dbc206ada3037821924bfa147ebe23df8e196c33ec9da7138ba52dc58e8e"
+        "canonical_sha256": "a4fd9f8480c2d9fb0aafc49fae58d8536baeda45f48d607fc7c411f1dbe4b5c8",
+        "sha256": "a4fd9f8480c2d9fb0aafc49fae58d8536baeda45f48d607fc7c411f1dbe4b5c8"
       },
       "path": "fixtures/rf305_condcorrprod",
       "tags": [
@@ -583,8 +583,8 @@
         ]
       },
       "hashes": {
-        "canonical_sha256": "be793e6a4ecd7b9b0307ad2b1277f760ad113be67f530a04cfb7fa454342b583",
-        "sha256": "0de682d02dceddfcd7274b19ba1236a8b51c80516d62f4cacdad2e6565969a7f"
+        "canonical_sha256": "183e777098883cff1959587e1c8bdb568a39d53208ee0873a18ebd387915dbb1",
+        "sha256": "9806df69845b23660140262a8632ae0c106be97a7fec5e21dd8f1f8ba8cf494a"
       },
       "path": "fixtures/rf308_normintegration2d",
       "tags": [
@@ -616,15 +616,15 @@
         ],
         "types": [
           "gaussian_dist",
-          "generic_function",
+          "generic",
           "product_dist",
           "product_domain",
           "unbinned"
         ]
       },
       "hashes": {
-        "canonical_sha256": "5ad29e7f4f345a604b6b633491900ea8e9fcc380b6d25fe004b4e7e99197e293",
-        "sha256": "a5a364184561cffb396fb9dab2233d4dfe2608b78dbccb44b059b172eafcad40"
+        "canonical_sha256": "3501614811a472f22163011b8b876fbbda764901529db3dc5bc616c0f27af545",
+        "sha256": "31784016b358bf51a796ad7bcd4c764644698c5cf90fef4081e171fe6bc18a65"
       },
       "path": "fixtures/rf309_ndimplot",
       "tags": [
@@ -664,8 +664,8 @@
         ]
       },
       "hashes": {
-        "canonical_sha256": "69dfd50ca9d0dd2259aa12605354c9fa3e813d0ecd87c156246feb3ba278ccf8",
-        "sha256": "c471bf86c6a82adaac77bda1eb817e9c7d5e897e6a6d705b1564317ff691cd1f"
+        "canonical_sha256": "455e1bc9fc95f9f2fd63b1be10bef6bd5f8d752a09f301b5151233fda5fddd7b",
+        "sha256": "e451dcbdf77a8528ebe4c1f4f82da5cf489ceed363e206d2ba3de7279e9a6eb8"
       },
       "path": "fixtures/rf311_rangeplot",
       "tags": [
@@ -702,8 +702,8 @@
         ]
       },
       "hashes": {
-        "canonical_sha256": "1a7a565cfef329e07c0b8de0b94c773d46ebc0959e00f263a15abfd463101d04",
-        "sha256": "2ea1c81274da1b438c15cf348011eac9e2ea517766aa7860e94192d020430f5d"
+        "canonical_sha256": "b79b412a023409a0b6fc47d6c547638615075533de1297ed7bee780a266492f9",
+        "sha256": "5e49ab4aaab56d93c3999db7c4a432f6ee7cd0390e4c7650573c099e586c18e3"
       },
       "path": "fixtures/rf313_paramranges",
       "tags": [
@@ -735,14 +735,15 @@
         "types": [
           "efficiency_product_pdf_dist",
           "exponential_dist",
+          "generic",
           "generic_function",
           "product_domain",
           "unbinned"
         ]
       },
       "hashes": {
-        "canonical_sha256": "d33efea264e7031db1e4a7afcdb75e78bd7adbff62f91f47e653ee4ea7f434a7",
-        "sha256": "1679f5423dd3a85c4feaf26260f54368e6113d4dd02ab84b437c60099aa27897"
+        "canonical_sha256": "60e4a96062b2984c4207d37676ede7dda09ac6a9e2c7c259a839ff2925796a45",
+        "sha256": "ae094a1fcb01aa7d9f384e170200a94d7f4eae4807371237210b75dcc14ae22a"
       },
       "path": "fixtures/rf703_effpdfprod",
       "tags": [
