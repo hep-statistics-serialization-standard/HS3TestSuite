@@ -7,7 +7,12 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from hs3suite_backend import HS3TestSuiteBackend
+try:
+    from hs3suite_backend import HS3TestSuiteBackend
+except:
+    print("module 'hs3suite_backend' not found. Falling back to builtin RooFitBackend!")
+    from hs3suite.backends.roofit import RooFitBackend as HS3TestSuiteBackend
+
 from hs3suite.manifest import (
     canonical_sha256,
     extract_features,
