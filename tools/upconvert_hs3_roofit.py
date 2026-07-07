@@ -72,14 +72,13 @@ def upconvert_hs3_file(
     backend: RooFitBackend,
     input_path: Path,
     output_path: Path,
-    workspace_name: str,
     *,
     suppress_output: bool,
 ) -> None:
     if not input_path.is_file():
         raise FileNotFoundError(input_path)
 
-    workspace = backend.ROOT.RooWorkspace(workspace_name)
+    workspace = backend.ROOT.RooWorkspace("ws")
     tool = backend.ROOT.RooJSONFactoryWSTool(workspace)
     context = suppress_root_output() if suppress_output else nullcontext()
 
@@ -104,11 +103,6 @@ def upconvert_hs3_file(
             temp_path.unlink()
 
 
-def workspace_name_for(path: Path, index: int) -> str:
-    stem = re.sub(r"[^A-Za-z0-9_]", "_", path.parent.name or path.stem)
-    return f"hs3suite_upconvert_{index}_{stem}"
-
-
 def display_path(path: Path, root: Path) -> str:
     try:
         return str(path.relative_to(root))
@@ -128,14 +122,13 @@ def main(argv: list[str] | None = None) -> int:
     backend = RooFitBackend()
     failures: list[tuple[Path, Exception]] = []
 
-    for index, input_path in enumerate(hs3_files, start=1):
+    for input_path in hs3_files:
         output_path = output_path_for(input_path, ROOT, output_dir)
         try:
             upconvert_hs3_file(
                 backend,
                 input_path,
                 output_path,
-                workspace_name_for(input_path, index),
                 suppress_output=not args.show_root_output,
             )
         except Exception as exc:
