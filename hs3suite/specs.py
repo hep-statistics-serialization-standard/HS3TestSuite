@@ -19,13 +19,13 @@ class FixtureSpec:
     source: str
     description: str
     scan: ScanSpec | None
+    reference_backend: str
     semantic: tuple[str, ...] = ()
     tags: tuple[str, ...] = ("roofit_tutorial",)
     conformance: tuple[str, ...] = ("basic",)
     modified_from_source: bool = False
     notes: tuple[str, ...] = ()
     backend_expectations: dict[str, dict[str, Any]] = field(default_factory=dict)
-
 
 FIXTURES: tuple[FixtureSpec, ...] = (
     FixtureSpec(
@@ -34,6 +34,7 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "ROOT RooFit tutorial rf101_basics.py",
         "Single Gaussian PDF with an unbinned toy dataset.",
         ScanSpec("gauss", "gaussData", "mean", (-1.0, 0.0, 1.0, 2.0, 3.0)),
+        "roofit 6.41.01",
         ("unbinned", "gaussian"),
     ),
     FixtureSpec(
@@ -42,6 +43,7 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "ROOT RooFit tutorial rf103_interprfuncs.py",
         "Generic interpreted PDF plus a Gaussian with formula-driven mean.",
         ScanSpec("genpdf", "genpdfData", "alpha", (3.0, 4.0, 5.0, 6.0, 7.0)),
+        "roofit 6.41.01",
         ("unbinned", "generic_expression"),
     ),
     FixtureSpec(
@@ -50,6 +52,7 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "ROOT RooFit tutorial rf110_normintegration.py",
         "Gaussian with integral and CDF objects plus generated data for scans.",
         ScanSpec("gx", "gxData", "mean", (-4.0, -3.0, -2.0, -1.0, 0.0)),
+        "roofit 6.41.01",
         ("unbinned", "integral", "cdf"),
         modified_from_source=True,
         notes=("The original tutorial has no data; this fixture adds a toy dataset.",),
@@ -60,6 +63,7 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "ROOT RooFit tutorial rf111_derivatives.py",
         "Gaussian with derivative functions and generated data for scans.",
         ScanSpec("gauss", "gaussData", "mean", (-1.0, 0.0, 1.0, 2.0, 3.0)),
+        "roofit 6.41.01",
         ("unbinned", "derivative"),
         modified_from_source=True,
         notes=("The original tutorial has no data; this fixture adds a toy dataset.",),
@@ -70,6 +74,7 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "ROOT RooFit tutorial rf203_ranges.py",
         "Gaussian plus polynomial mixture with a named observable range.",
         ScanSpec("model", "modelData", "mx", (-1.0, -0.5, 0.0, 0.5, 1.0)),
+        "roofit 6.41.01",
         ("unbinned", "ranges", "mixture"),
     ),
     FixtureSpec(
@@ -78,6 +83,7 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "ROOT RooFit tutorial rf207_comptools.py",
         "Composite signal/background model with customized component clone.",
         ScanSpec("model", "data", "bkgfrac", (0.2, 0.35, 0.5, 0.65, 0.8)),
+        "roofit 6.41.01",
         ("unbinned", "composition", "customizer"),
         modified_from_source=True,
         notes=("The original tutorial stored an empty dataset; this fixture samples the model.",),
@@ -88,6 +94,7 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "ROOT RooFit tutorial rf208_convolution_fft3.py",
         "Landau convolved with a Gaussian using RooFFTConvPdf.",
         ScanSpec("lxg", "lxgData", "ml", (3.0, 4.0, 5.0, 6.0, 7.0)),
+        "roofit 6.41.01",
         ("unbinned", "fft_convolution"),
     ),
     FixtureSpec(
@@ -96,6 +103,7 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "ROOT RooFit tutorial rf209_anaconv.py",
         "Decay PDFs with truth and Gaussian resolution models.",
         ScanSpec("decay_gm1", "decay_gm1Data", "tau", (1.0, 1.3, 1.548, 1.8, 2.1)),
+        "roofit 6.41.01",
         ("unbinned", "analytical_convolution", "resolution_model"),
         modified_from_source=True,
         notes=(
@@ -115,6 +123,7 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "ROOT RooFit tutorial rf210_angularconv.py",
         "Angular FFT convolution in psi and cos(psi).",
         ScanSpec("Mf", "MfData", "gbias", (0.0, 0.1, 0.2, 0.3, 0.4)),
+        "roofit 6.41.01",
         ("unbinned", "fft_convolution", "generic_expression"),
     ),
     FixtureSpec(
@@ -123,6 +132,7 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "ROOT RooFit tutorial rf301_composition.py",
         "Gaussian whose mean is a polynomial function of another observable.",
         ScanSpec("model", "modelData", "a0", (-1.5, -1.0, -0.5, 0.0, 0.5)),
+        "roofit 6.41.01",
         ("unbinned", "composition"),
     ),
     FixtureSpec(
@@ -131,6 +141,7 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "ROOT RooFit tutorial rf302_utilfuncs.py",
         "Gaussian models using formula, polynomial, addition, and product functions.",
         ScanSpec("model_2", "model_2Data", "a0", (-2.5, -2.0, -1.5, -1.0, -0.5)),
+        "roofit 6.41.01",
         ("unbinned", "utility_functions"),
         modified_from_source=True,
         notes=("The original tutorial has no data; this fixture samples a representative model.",),
@@ -141,6 +152,7 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "ROOT RooFit tutorial rf303_conditional.py",
         "Conditional Gaussian model with generated data and external prototype data.",
         ScanSpec("model", "modelData", "a0", (-1.5, -1.0, -0.5, 0.0, 0.5)),
+        "roofit 6.41.01",
         ("unbinned", "conditional"),
     ),
     FixtureSpec(
@@ -149,6 +161,7 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "ROOT RooFit tutorial rf304_uncorrprod.py",
         "Two-dimensional product of independent Gaussian PDFs.",
         ScanSpec("gaussxy", "gaussxyData", "mean1", (0.0, 1.0, 2.0, 3.0, 4.0)),
+        "roofit 6.41.01",
         ("unbinned", "product_pdf"),
     ),
     FixtureSpec(
@@ -157,6 +170,7 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "ROOT RooFit tutorial rf305_condcorrprod.py",
         "Conditional product model with y-dependent Gaussian mean.",
         ScanSpec("model", "modelData", "a0", (-1.5, -1.0, -0.5, 0.0, 0.5)),
+        "roofit 6.41.01",
         ("unbinned", "conditional", "product_pdf"),
     ),
     FixtureSpec(
@@ -165,6 +179,7 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "ROOT RooFit tutorial rf308_normintegration2d.py",
         "Two-dimensional Gaussian product with integral and CDF objects plus data.",
         ScanSpec("gxy", "gxyData", "meanx", (-4.0, -3.0, -2.0, -1.0, 0.0)),
+        "roofit 6.41.01",
         ("unbinned", "integral", "cdf", "product_pdf"),
         modified_from_source=True,
         notes=("The original tutorial has no data; this fixture adds a toy dataset.",),
@@ -175,6 +190,7 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "ROOT RooFit tutorial rf309_ndimplot.py",
         "Two- and three-dimensional composed Gaussian models with toy data.",
         ScanSpec("model", "modelData", "a0", (-5.0, -4.0, -3.5, -3.0, -2.0)),
+        "roofit 6.41.01",
         ("unbinned", "multidimensional", "generic_expression"),
     ),
     FixtureSpec(
@@ -183,6 +199,7 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "ROOT RooFit tutorial rf311_rangeplot.py",
         "Three-dimensional signal/background mixture with named ranges.",
         ScanSpec("model", "modelData", "fsig", (0.0, 0.05, 0.1, 0.2, 0.3)),
+        "roofit 6.41.01",
         ("unbinned", "ranges", "mixture", "multidimensional"),
     ),
     FixtureSpec(
@@ -191,6 +208,7 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "ROOT RooFit tutorial rf313_paramranges.py",
         "Three-dimensional product polynomial model with parameterized ranges and generated data.",
         ScanSpec("pxyz", "pxyzData", "z0", (-0.05, 0.0, 0.1, 0.2, 0.35)),
+        "roofit 6.41.01",
         ("unbinned", "parameterized_ranges", "product_pdf"),
         modified_from_source=True,
         notes=(
@@ -204,6 +222,7 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "ROOT RooFit tutorial rf703_effpdfprod.py",
         "Exponential model multiplied by an efficiency turn-on function.",
         ScanSpec("modelEff", "modelEffData", "tau", (-2.0, -1.75, -1.54, -1.2, -0.9)),
+        "roofit 6.41.01",
         ("unbinned", "efficiency_product"),
     ),
 )
