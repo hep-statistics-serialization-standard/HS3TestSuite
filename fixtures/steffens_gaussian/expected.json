@@ -1,0 +1,59 @@
+{
+  "checks": [
+    {
+      "id": "static_integrity",
+      "kind": "static_integrity"
+    },
+    {
+      "id": "structure_import",
+      "kind": "structure_import",
+      "target": {
+        "data": [
+          "gaussData"
+        ],
+        "functions": [],
+        "pdfs": [
+          "gauss"
+        ]
+      }
+    },
+    {
+      "comparison": {
+        "rule": "|evaluated - expected| <= atol + rtol * |expected|",
+        "type": "pointwise_comp"
+      },
+      "expected": [
+        888.0456117195517,
+        224.26202740723056,
+        0.0,
+        213.06114567253644,
+        856.1426350606562
+      ],
+      "id": "twice_delta_nll_scan",
+      "kind": "twice_delta_nll_scan",
+      "reference_point": {
+        "mean": 1.0,
+        "sigma": 3.0,
+        "x": 0.0
+      },
+      "scan_parameter": "mean",
+      "scan_points": [
+        -1.0,
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "target": {
+        "data": "gaussData",
+        "pdf": "gauss"
+      },
+      "tolerance": {
+        "atol": 1e-07,
+        "rtol": 1e-08
+      }
+    }
+  ],
+  "schema_version": 1,
+  "test_id": "steffens_gaussian"
+}
