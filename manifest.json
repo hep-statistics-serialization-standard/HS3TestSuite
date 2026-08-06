@@ -750,6 +750,38 @@
         "roofit_tutorial"
       ],
       "test_id": "rf703_effpdfprod"
+    },
+    {
+      "checks": [
+        "static_integrity",
+        "structure_import",
+        "scan1",
+        "scan_2"
+      ],
+      "conformance": [],
+      "features": {
+        "sections": [
+          "analyses",
+          "data",
+          "distributions",
+          "domains",
+          "likelihoods",
+          "parameter_points"
+        ],
+        "semantic": [],
+        "types": [
+          "gaussian_dist",
+          "product_domain",
+          "unbinned"
+        ]
+      },
+      "hashes": {
+        "canonical_sha256": "41dfd6d91a19171d866598a045af08516a4f0c9d022fa955d30eb3298e28ba5f",
+        "sha256": "7601d6679d5467e690008e6a368a300cdd5c43806ff13f0dffb301496bb52f32"
+      },
+      "path": "fixtures/simplest_gauss",
+      "tags": [],
+      "test_id": "simplest_gauss"
     }
   ],
   "generated_by": "tools/build_manifest_and_expected.py",
