@@ -50,13 +50,25 @@
         "y": 0.0,
         "y_prime": 0.0
       },
-      "scan_parameter": "meanx",
+      "scan_parameters": [
+        "meanx"
+      ],
       "scan_points": [
-        -4.0,
-        -3.0,
-        -2.0,
-        -1.0,
-        0.0
+        [
+          -4.0
+        ],
+        [
+          -3.0
+        ],
+        [
+          -2.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          0.0
+        ]
       ],
       "target": {
         "data": "gxyData",

@@ -39,13 +39,25 @@
         "mx": 0.0,
         "x": 0.0
       },
-      "scan_parameter": "mx",
+      "scan_parameters": [
+        "mx"
+      ],
       "scan_points": [
-        -1.0,
-        -0.5,
-        0.0,
-        0.5,
-        1.0
+        [
+          -1.0
+        ],
+        [
+          -0.5
+        ],
+        [
+          0.0
+        ],
+        [
+          0.5
+        ],
+        [
+          1.0
+        ]
       ],
       "target": {
         "data": "modelData",
