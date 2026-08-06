@@ -1,0 +1,64 @@
+{
+  "metadata": {
+    "hs3_version": "0.2.0",
+    "description": "Minimal unbinned Gaussian model"
+  },
+  "distributions": [
+    {
+      "name": "gauss",
+      "type": "gaussian_dist",
+      "x": "x",
+      "mean": "mu",
+      "sigma": "sigma"
+    }
+  ],
+  "data": [
+    {
+      "name": "obsData",
+      "type": "unbinned",
+      "axes": [
+        { "name": "x", "min": -5.0, "max": 5.0 }
+      ],
+      "entries": [
+        [-1.31], [0.42], [1.07], [-0.55], [0.88],
+        [2.13], [-0.04], [0.61], [-1.72], [0.29]
+      ]
+    }
+  ],
+  "likelihoods": [
+    {
+      "name": "likelihood",
+      "distributions": ["gauss"],
+      "data": ["obsData"]
+    }
+  ],
+  "domains": [
+    {
+      "name": "default_domain",
+      "type": "product_domain",
+      "axes": [
+        { "name": "x", "min": -5.0, "max": 5.0 },
+        { "name": "mu", "min": -5.0, "max": 5.0 },
+        { "name": "sigma", "min": 0.1, "max": 5.0 }
+      ]
+    }
+  ],
+  "parameter_points": [
+    {
+      "name": "default_values",
+      "parameters": [
+        { "name": "mu", "value": 0.0 },
+        { "name": "sigma", "value": 1.0 }
+      ]
+    }
+  ],
+  "analyses": [
+    {
+      "name": "analysis",
+      "likelihood": "likelihood",
+      "parameters_of_interest": ["mu"],
+      "domain": "default_domain",
+      "init": "default_values"
+    }
+  ]
+}
