@@ -50,15 +50,11 @@ class PyHS3Backend:
             if missing:
                 raise AssertionError(f"missing {key}: {sorted(missing)}")
 
-    def run_twice_delta_nll_scan(self, workspace, check: dict[str, Any]) -> list[float]:
+    def run_twice_delta_nll_scan(self, workspace, check: dict[str, Any], hs3_path: Path) -> list[float]:
+        # hs3_path is unused here (pyhs3.Workspace already parses "likelihoods" natively)
+        # but accepted for signature parity with RooFitBackend.
         target = check["target"]
-        distribution = _get_named(workspace.distributions, target["pdf"], "distribution")
-        data = _get_named(workspace.data, target["data"], "data")
-        likelihood = self.Likelihood(
-            name=f"hs3suite_{target['pdf']}_{target['data']}",
-            distributions=[distribution],
-            data=[data],
-        )
+        likelihood = self._resolve_likelihood(workspace, target)
         model = workspace.model(likelihood, progress=False, mode=self.mode)
         twice_nll = -2 * model.log_prob
         inputs = [
@@ -75,18 +71,27 @@ class PyHS3Backend:
         )
 
         base_values = self._base_values(model, check, inputs)
-        scan_parameter = check["scan_parameter"]
-        reference_values = dict(base_values)
-        reference_values[scan_parameter] = check["reference_point"][scan_parameter]
-        reference = _as_scalar(evaluator(*_ordered_values(inputs, reference_values)))
+        reference = _as_scalar(evaluator(*_ordered_values(inputs, base_values)))
 
         values: list[float] = []
+        scan_parameters = check["scan_parameters"]
         for point in check["scan_points"]:
             scan_values = dict(base_values)
-            scan_values[scan_parameter] = point
+            scan_values.update(zip(scan_parameters, point, strict=True))
             value = _as_scalar(evaluator(*_ordered_values(inputs, scan_values)))
             values.append(value - reference)
         return values
+
+    def _resolve_likelihood(self, workspace, target: dict[str, Any]):
+        if "likelihood" in target:
+            return _get_named(workspace.likelihoods, target["likelihood"], "likelihood")
+        distribution = _get_named(workspace.distributions, target["pdf"], "distribution")
+        data = _get_named(workspace.data, target["data"], "data")
+        return self.Likelihood(
+            name=f"hs3suite_{target['pdf']}_{target['data']}",
+            distributions=[distribution],
+            data=[data],
+        )
 
     def _base_values(self, model, check: dict[str, Any], inputs: list[Any]) -> dict[str, Any]:
         values: dict[str, Any] = {}

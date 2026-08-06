@@ -90,7 +90,7 @@ def _run_fixture(root: Path, backend, fixture: dict[str, Any], expected: dict[st
                 if kind == "structure_import":
                     backend.run_structure_check(workspace, check)
                 elif kind == "twice_delta_nll_scan":
-                    actual = backend.run_twice_delta_nll_scan(workspace, check)
+                    actual = backend.run_twice_delta_nll_scan(workspace, check, hs3_path)
                     compare_vectors(actual, check["expected"], check["tolerance"])
                 else:
                     raise AssertionError(f"unsupported check kind {kind!r}")
