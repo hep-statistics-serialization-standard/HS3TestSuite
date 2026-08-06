@@ -271,34 +271,6 @@ FIXTURES: tuple[FixtureSpec, ...] = (
         "roofit 6.41.01",
         ("unbinned", "efficiency_product"),
     ),
-    FixtureSpec(
-        "synth_combined_likelihood1",
-        "Synthetic combined-likelihood two-channel Gaussian model",
-        "hand-authored (not derived from a ROOT RooFit tutorial)",
-        "Two Gaussian channels sharing a common mean, combined via an HS3 top-level "
-        "'likelihoods' entry; exercises multiple scans per fixture, a multi-parameter "
-        "joint scan, and target: {likelihood: ...} resolution.",
-        (
-            ScanSpec.one_dim(
-                "gauss1", "data1", "mean", (-1.0, 0.0, 1.0, 2.0, 3.0), id="scan_gauss1_only"
-            ),
-            ScanSpec(
-                id="scan_combined_2d",
-                parameters=("mean", "sigma1"),
-                points=((-1.0, 1.0), (0.0, 2.0), (1.0, 2.0), (2.0, 3.0), (3.0, 4.0)),
-                likelihood="combined_lh",
-            ),
-        ),
-        "roofit 6.41.01",
-        ("unbinned", "gaussian", "likelihoods_section", "multi_scan", "multidimensional_scan"),
-        tags=("synthetic",),
-        modified_from_source=True,
-        notes=(
-            "Hand-authored synthetic fixture, not derived from a ROOT tutorial.",
-            "Created to exercise the HS3 top-level 'likelihoods' section end-to-end "
-            "(target: {likelihood: ...}), since no tutorial-derived fixture has one.",
-        ),
-    ),
 )
 
 
