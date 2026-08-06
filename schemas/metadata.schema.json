@@ -12,6 +12,46 @@
     "description": { "type": "string" },
     "notes": { "type": "array", "items": { "type": "string" } },
     "modified_from_source": { "type": "boolean" },
-    "reference_backend": { "type": "string" }
+    "reference_backend": { "type": "string" },
+    "semantic": { "type": "array", "items": { "type": "string" } },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "conformance": { "type": "array", "items": { "type": "string" } },
+    "nll_scans": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["parameters", "points"],
+        "properties": {
+          "id": { "type": "string" },
+          "parameters": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          },
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": { "type": "number" },
+              "minItems": 1
+            }
+          },
+          "pdf": { "type": "string" },
+          "data": { "type": "string" },
+          "likelihood": { "type": "string" }
+        },
+        "oneOf": [
+          {
+            "required": ["pdf", "data"],
+            "properties": { "likelihood": false }
+          },
+          {
+            "required": ["likelihood"],
+            "properties": { "pdf": false, "data": false }
+          }
+        ]
+      }
+    }
   }
 }

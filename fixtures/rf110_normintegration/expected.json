@@ -42,13 +42,25 @@
         "x": 0.0,
         "x_prime": 0.0
       },
-      "scan_parameter": "mean",
+      "scan_parameters": [
+        "mean"
+      ],
       "scan_points": [
-        -4.0,
-        -3.0,
-        -2.0,
-        -1.0,
-        0.0
+        [
+          -4.0
+        ],
+        [
+          -3.0
+        ],
+        [
+          -2.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          0.0
+        ]
       ],
       "target": {
         "data": "gxData",

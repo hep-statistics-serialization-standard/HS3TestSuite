@@ -21,8 +21,11 @@
           },
           "target": { "type": "object" },
           "reference_point": { "type": "object" },
-          "scan_parameter": { "type": "string" },
-          "scan_points": { "type": "array", "items": { "type": "number" } },
+          "scan_parameters": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "scan_points": {
+            "type": "array",
+            "items": { "type": "array", "items": { "type": "number" }, "minItems": 1 }
+          },
           "expected": { "type": "array", "items": { "type": "number" } },
           "tolerance": {
             "type": "object",
@@ -34,7 +37,48 @@
             }
           },
           "comparison": { "type": "object" }
-        }
+        },
+        "allOf": [
+          {
+            "if": {
+              "required": ["kind"],
+              "properties": { "kind": { "const": "twice_delta_nll_scan" } }
+            },
+            "then": {
+              "required": [
+                "target",
+                "reference_point",
+                "scan_parameters",
+                "scan_points",
+                "expected",
+                "tolerance"
+              ],
+              "properties": {
+                "target": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": ["pdf", "data"],
+                      "properties": {
+                        "pdf": { "type": "string" },
+                        "data": { "type": "string" }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": ["likelihood"],
+                      "properties": {
+                        "likelihood": { "type": "string" }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
       }
     }
   }

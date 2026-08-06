@@ -74,24 +74,30 @@ def build_expected(spec, payload: dict[str, Any], backend: None) -> dict[str, An
     is_roofit_xfail = bool(
         spec.backend_expectations.get("roofit", {}).get("xfail", False)
     )
-    if spec.scan and not is_roofit_xfail:
+    if spec.scans and not is_roofit_xfail:
         if backend is None:
             raise RuntimeError("RooFit backend is required to build scan expectations")
         hs3_path = ROOT / "fixtures" / spec.test_id / "hs3.json"
         workspace = backend.load_workspace(hs3_path)
-        check = {
-            "id": "twice_delta_nll_scan",
-            "kind": "twice_delta_nll_scan",
-            "target": {"pdf": spec.scan.pdf, "data": spec.scan.data},
-            "reference_point": default_parameter_point(payload),
-            "scan_parameter": spec.scan.parameter,
-            "scan_points": list(spec.scan.points),
-            "expected": [],
-            "tolerance": {"rtol": 1e-8, "atol": 1e-7},
-            "comparison": comparison(),
-        }
-        check["expected"] = backend.run_twice_delta_nll_scan(workspace, check)
-        checks.append(check)
+        for scan in spec.scans:
+            target = (
+                {"likelihood": scan.likelihood}
+                if scan.likelihood is not None
+                else {"pdf": scan.pdf, "data": scan.data}
+            )
+            check = {
+                "id": scan.id,
+                "kind": "twice_delta_nll_scan",
+                "target": target,
+                "reference_point": default_parameter_point(payload),
+                "scan_parameters": list(scan.parameters),
+                "scan_points": [list(point) for point in scan.points],
+                "expected": [],
+                "tolerance": {"rtol": 1e-8, "atol": 1e-7},
+                "comparison": comparison(),
+            }
+            check["expected"] = backend.run_twice_delta_nll_scan(workspace, check, hs3_path)
+            checks.append(check)
     return {"schema_version": 1, "test_id": spec.test_id, "checks": checks}
 
 
@@ -146,20 +152,32 @@ def main() -> int:
         FIXTURES = []
         for testcase_path in args.fixtures:
             md = load_json(Path(testcase_path) / "metadata.json")
-            if "nll_scan" in md:
-                md["scan"] = ScanSpec(
-                    pdf=md["nll_scan"]["pdf_name"],
-                    data=md["nll_scan"]["dataset_name"],
-                    parameter=md["nll_scan"]["parameter_name"],
-                    points=md["nll_scan"]["points"]
-                )
+            if "nll_scans" in md:
+                scans = []
+                for i, scan_md in enumerate(md["nll_scans"]):
+                    default_id = (
+                        "twice_delta_nll_scan"
+                        if len(md["nll_scans"]) == 1
+                        else f"twice_delta_nll_scan_{i}"
+                    )
+                    scans.append(
+                        ScanSpec(
+                            parameters=tuple(scan_md["parameters"]),
+                            points=tuple(tuple(point) for point in scan_md["points"]),
+                            pdf=scan_md.get("pdf"),
+                            data=scan_md.get("data"),
+                            likelihood=scan_md.get("likelihood"),
+                            id=scan_md.get("id", default_id),
+                        )
+                    )
+                md["scans"] = tuple(scans)
             FIXTURES.append(
                 FixtureSpec(
                     test_id=md["test_id"],
                     title=md["title"],
                     source=md["source"],
                     description=md["description"],
-                    scan=md.get("scan", None),
+                    scans=md.get("scans", ()),
                     semantic=md.get("semantic", ()),
                     tags=md.get("tags", ()),
                     conformance=md.get("conformance", ()),

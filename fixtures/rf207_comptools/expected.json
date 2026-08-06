@@ -50,13 +50,25 @@
         "sigma2": 1.0,
         "x": 5.0
       },
-      "scan_parameter": "bkgfrac",
+      "scan_parameters": [
+        "bkgfrac"
+      ],
       "scan_points": [
-        0.2,
-        0.35,
-        0.5,
-        0.65,
-        0.8
+        [
+          0.2
+        ],
+        [
+          0.35
+        ],
+        [
+          0.5
+        ],
+        [
+          0.65
+        ],
+        [
+          0.8
+        ]
       ],
       "target": {
         "data": "data",
