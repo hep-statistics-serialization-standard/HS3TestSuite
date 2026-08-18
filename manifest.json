@@ -750,6 +750,42 @@
         "roofit_tutorial"
       ],
       "test_id": "rf703_effpdfprod"
+    },
+    {
+      "checks": [
+        "static_integrity",
+        "structure_import",
+        "simRecoObs",
+        "simTruthObs"
+      ],
+      "conformance": [
+        "HS3-Core"
+      ],
+      "features": {
+        "sections": [
+          "analyses",
+          "data",
+          "distributions",
+          "domains",
+          "likelihoods",
+          "parameter_points"
+        ],
+        "semantic": [
+          "gaussian"
+        ],
+        "types": [
+          "gaussian_dist",
+          "product_domain",
+          "unbinned"
+        ]
+      },
+      "hashes": {
+        "canonical_sha256": "fcb9ab1cb80860d100c8bc980e212c28630b8ce433ed816381fb539679fa22d2",
+        "sha256": "aa414a3dfca6947069a1a4d934b62236b958a3f90320a4f6a6fe56c7bb34e677"
+      },
+      "path": "fixtures/response_model",
+      "tags": [],
+      "test_id": "response_model"
     }
   ],
   "generated_by": "tools/build_manifest_and_expected.py",
