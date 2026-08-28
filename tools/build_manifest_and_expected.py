@@ -21,7 +21,7 @@ from hs3suite.manifest import (
     write_json,
 )
 from hs3suite.specs import FIXTURES as LEGACY_FIXTURES
-from hs3suite.specs import FixtureSpec, ScanSpec
+from hs3suite.specs import FixtureSpec, FunctionScanSpec, NLLScanSpec, PdfScanSpec
 
 
 def default_parameter_point(payload: dict[str, Any]) -> dict[str, float]:
@@ -74,29 +74,27 @@ def build_expected(spec, payload: dict[str, Any], backend: None) -> dict[str, An
     is_roofit_xfail = bool(
         spec.backend_expectations.get("roofit", {}).get("xfail", False)
     )
-    if spec.scans and not is_roofit_xfail:
+    scans = spec.all_scans()
+    if scans and not is_roofit_xfail:
         if backend is None:
-            raise RuntimeError("RooFit backend is required to build scan expectations")
+            raise RuntimeError("RooFit backend is required to build numeric expectations")
         hs3_path = ROOT / "fixtures" / spec.test_id / "hs3.json"
         workspace = backend.load_workspace(hs3_path)
-        for scan in spec.scans:
-            target = (
-                {"likelihood": scan.likelihood}
-                if scan.likelihood is not None
-                else {"pdf": scan.pdf, "data": scan.data}
-            )
+        for scan in scans:
             check = {
                 "id": scan.id,
-                "kind": "twice_delta_nll_scan",
-                "target": target,
+                "kind": scan.kind,
+                "target": scan.target(),
                 "reference_point": default_parameter_point(payload),
                 "scan_parameters": list(scan.parameters),
                 "scan_points": [list(point) for point in scan.points],
                 "expected": [],
-                "tolerance": {"rtol": 1e-8, "atol": 1e-7},
+                "tolerance": scan.tolerance(),
                 "comparison": comparison(),
             }
-            check["expected"] = backend.run_twice_delta_nll_scan(workspace, check, hs3_path)
+            # Each kind's backend entry point is run_<kind> by construction.
+            run = getattr(backend, f"run_{scan.kind}")
+            check["expected"] = run(workspace, check, hs3_path)
             checks.append(check)
     return {"schema_version": 1, "test_id": spec.test_id, "checks": checks}
 
@@ -136,6 +134,29 @@ def build_manifest_entry(spec, payload: dict[str, Any]) -> dict[str, Any]:
     return entry
 
 
+def _specs(md: dict[str, Any], key: str, cls) -> tuple[Any, ...]:
+    """Translate a metadata scan list into specs of ``cls``.
+
+    Ids default to the class default for a single entry and are suffixed otherwise, so a
+    fixture with one scan gets a clean ``pdf_scan`` rather than ``pdf_scan_0``.
+    """
+    entries = md.get(key, ())
+    default_id = cls.id
+    return tuple(
+        cls(
+            parameters=tuple(entry["parameters"]),
+            points=tuple(tuple(point) for point in entry["points"]),
+            id=entry.get("id", default_id if len(entries) == 1 else f"{default_id}_{i}"),
+            **{
+                field: (tuple(entry[field]) if field == "observables" else entry[field])
+                for field in ("pdf", "data", "likelihood", "observables", "function")
+                if field in entry
+            },
+        )
+        for i, entry in enumerate(entries)
+    )
+
+
 def main() -> int:
     import argparse
 
@@ -152,32 +173,18 @@ def main() -> int:
         FIXTURES = []
         for testcase_path in args.fixtures:
             md = load_json(Path(testcase_path) / "metadata.json")
-            if "nll_scans" in md:
-                scans = []
-                for i, scan_md in enumerate(md["nll_scans"]):
-                    default_id = (
-                        "twice_delta_nll_scan"
-                        if len(md["nll_scans"]) == 1
-                        else f"twice_delta_nll_scan_{i}"
-                    )
-                    scans.append(
-                        ScanSpec(
-                            parameters=tuple(scan_md["parameters"]),
-                            points=tuple(tuple(point) for point in scan_md["points"]),
-                            pdf=scan_md.get("pdf"),
-                            data=scan_md.get("data"),
-                            likelihood=scan_md.get("likelihood"),
-                            id=scan_md.get("id", default_id),
-                        )
-                    )
-                md["scans"] = tuple(scans)
+            md["nll_scans"] = _specs(md, "nll_scans", NLLScanSpec)
+            md["pdf_scans"] = _specs(md, "pdf_scans", PdfScanSpec)
+            md["function_scans"] = _specs(md, "function_scans", FunctionScanSpec)
             FIXTURES.append(
                 FixtureSpec(
                     test_id=md["test_id"],
                     title=md["title"],
                     source=md["source"],
                     description=md["description"],
-                    scans=md.get("scans", ()),
+                    nll_scans=md.get("nll_scans", ()),
+                    pdf_scans=md.get("pdf_scans", ()),
+                    function_scans=md.get("function_scans", ()),
                     semantic=md.get("semantic", ()),
                     tags=md.get("tags", ()),
                     conformance=md.get("conformance", ()),

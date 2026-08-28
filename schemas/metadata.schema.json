@@ -52,6 +52,61 @@
           }
         ]
       }
+    },
+    "pdf_scans": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["parameters", "points", "pdf", "observables"],
+        "properties": {
+          "id": { "type": "string" },
+          "parameters": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          },
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": { "type": "number" },
+              "minItems": 1
+            }
+          },
+          "pdf": { "type": "string" },
+          "observables": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          }
+        }
+      }
+    },
+    "function_scans": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["parameters", "points", "function"],
+        "properties": {
+          "id": { "type": "string" },
+          "parameters": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          },
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": { "type": "number" },
+              "minItems": 1
+            }
+          },
+          "function": { "type": "string" }
+        }
+      }
     }
   }
 }

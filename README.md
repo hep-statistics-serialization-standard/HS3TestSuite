@@ -59,9 +59,11 @@ There are several IDs with different meanings:
 - `test_id`: identifies one fixture, for example `rf101_basics`. It ties
   together the manifest entry and the files under `fixtures/rf101_basics/`.
 - check `id`: identifies one check inside `expected.json`, for example
-  `static_integrity`, `structure_import`, or `twice_delta_nll_scan`.
+  `static_integrity`, `structure_import`, `twice_delta_nll_scan`, `pdf_scan`, or
+  `function_scan`.
 - check `kind`: tells the runner how to execute a check. The current kinds are
-  `static_integrity`, `structure_import`, and `twice_delta_nll_scan`.
+  `static_integrity`, `structure_import`, `twice_delta_nll_scan`, `pdf_scan`, and
+  `function_scan`.
 - schema `$id`: JSON Schema identifier only; it is not a fixture or check ID.
 
 Runner output uses `test_id::check_id`, for example:
@@ -126,12 +128,29 @@ from the original tutorial.
       "kind": "twice_delta_nll_scan",
       "target": { "pdf": "gauss", "data": "gaussData" },
       "reference_point": { "mean": 1.0, "sigma": 3.0, "x": 0.0 },
-      "scan_parameter": "mean",
-      "scan_points": [-1.0, 0.0, 1.0, 2.0, 3.0],
+      "scan_parameters": ["mean"],
+      "scan_points": [[-1.0], [0.0], [1.0], [2.0], [3.0]],
       "expected": [888.0456117195517, 224.26202740723056, 0.0, 213.06114567253644, 856.1426350606562],
       "tolerance": { "atol": 1e-7, "rtol": 1e-8 }
     }
   ]
+}
+```
+
+`scan_parameters` is a list and each entry of `scan_points` is a list of the same length, so a scan can vary several parameters at once.
+
+A `pdf_scan` check has the same shape but needs no dataset, so it also works on an `hs3.json` with no `data` section at all:
+
+```json
+{
+  "id": "pdf_scan",
+  "kind": "pdf_scan",
+  "target": { "pdf": "gauss", "observables": ["x"] },
+  "reference_point": { "mean": 0.0, "sigma": 1.0, "x": 0.0 },
+  "scan_parameters": ["x"],
+  "scan_points": [[-2.0], [-1.0], [0.0], [1.0], [2.0]],
+  "expected": [0.05399096651318806, 0.24197072451914337, 0.3989422804014327, 0.24197072451914337, 0.05399096651318806],
+  "tolerance": { "atol": 1e-12, "rtol": 1e-8 }
 }
 ```
 
@@ -155,6 +174,29 @@ means loading the file into a `RooWorkspace` using `RooJSONFactoryWSTool`.
 
 The suite prefers `2DeltaNLL` rather than raw NLL because raw NLL can include
 backend-dependent constants or offsets.
+
+`pdf_scan` and `function_scan` are the quantitative checks for models that carry no data.  
+Each:
+
+1. Imports the HS3 model.
+2. Finds the target PDF or function.
+3. At each scan point, re-applies the `reference_point` and then overwrites the
+   scanned names.
+4. Evaluates the target.
+5. Compares pointwise with the same rule as `twice_delta_nll_scan`.
+
+They differ only in the target. `pdf_scan` takes
+`{ "pdf": ..., "observables": [...] }` and evaluates a probability density
+**normalised over the listed observables**. `function_scan` takes
+`{ "function": ... }` and evaluates a plain function value.
+
+The `observables` list is required for `pdf_scan` for the same reason the suite
+prefers `2DeltaNLL` over raw NLL: an unnormalised pdf value carries an arbitrary
+backend-dependent constant. Declaring the observables in the fixture makes the normalisation domain
+part of the frozen contract rather than an implicit backend convention.
+
+`function_scan` needs no normalisation set: a `RooAbsReal` has no normalisation to
+apply, so its raw value is already comparable across backends.
 
 ## Backend Imports
 
