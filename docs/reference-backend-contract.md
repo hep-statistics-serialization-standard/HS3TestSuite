@@ -59,6 +59,17 @@ adds both).
 
 A non-zero exit code fails the `generate` job and nothing is committed.
 
+**Which checks to emit:** driven by `metadata.json`. An `nll_scans` entry produces a
+`twice_delta_nll_scan` check; `pdf_scans` and `function_scans` entries produce `pdf_scan`
+and `function_scan` checks. A backend image is expected to support all three. The two
+data-less kinds matter in particular for fixtures whose `hs3.json` has no `data` section
+at all, where `twice_delta_nll_scan` cannot be built — without them such a fixture pins
+no numbers.
+
+For `pdf_scan`, the value written to `expected` must be the density **normalised over the
+observables named in the entry**, not a raw expression value. Backends might disagree about what an unnormalised pdf value means, which is the same
+reason `twice_delta_nll_scan` freezes `2ΔNLL` rather than a raw NLL.
+
 For the RooFit reference image, `generate-fixtures` is a thin wrapper that sources the
 ROOT environment and execs
 `python3 "$GITHUB_WORKSPACE/tools/build_manifest_and_expected.py" -e -f "$1"` — i.e. it

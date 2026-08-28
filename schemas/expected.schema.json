@@ -17,7 +17,7 @@
           "id": { "type": "string" },
           "kind": {
             "type": "string",
-            "enum": ["static_integrity", "structure_import", "twice_delta_nll_scan", "point_eval"]
+            "enum": ["static_integrity", "structure_import", "twice_delta_nll_scan", "pdf_scan", "function_scan"]
           },
           "target": { "type": "object" },
           "reference_point": { "type": "object" },
@@ -74,6 +74,63 @@
                       }
                     }
                   ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "required": ["kind"],
+              "properties": { "kind": { "const": "pdf_scan" } }
+            },
+            "then": {
+              "required": [
+                "target",
+                "reference_point",
+                "scan_parameters",
+                "scan_points",
+                "expected",
+                "tolerance"
+              ],
+              "properties": {
+                "target": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["pdf", "observables"],
+                  "properties": {
+                    "pdf": { "type": "string" },
+                    "observables": {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "minItems": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "required": ["kind"],
+              "properties": { "kind": { "const": "function_scan" } }
+            },
+            "then": {
+              "required": [
+                "target",
+                "reference_point",
+                "scan_parameters",
+                "scan_points",
+                "expected",
+                "tolerance"
+              ],
+              "properties": {
+                "target": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["function"],
+                  "properties": {
+                    "function": { "type": "string" }
+                  }
                 }
               }
             }

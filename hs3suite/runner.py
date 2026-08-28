@@ -92,6 +92,12 @@ def _run_fixture(root: Path, backend, fixture: dict[str, Any], expected: dict[st
                 elif kind == "twice_delta_nll_scan":
                     actual = backend.run_twice_delta_nll_scan(workspace, check, hs3_path)
                     compare_vectors(actual, check["expected"], check["tolerance"])
+                elif kind == "pdf_scan":
+                    actual = backend.run_pdf_scan(workspace, check, hs3_path)
+                    compare_vectors(actual, check["expected"], check["tolerance"])
+                elif kind == "function_scan":
+                    actual = backend.run_function_scan(workspace, check, hs3_path)
+                    compare_vectors(actual, check["expected"], check["tolerance"])
                 else:
                     raise AssertionError(f"unsupported check kind {kind!r}")
         except Exception as exc:
