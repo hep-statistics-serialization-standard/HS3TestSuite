@@ -1,0 +1,162 @@
+{
+    "analyses": [
+        {
+            "domains": [
+                "simRecoObs_parameters_of_interest"
+            ],
+            "likelihood": "simRecoObs",
+            "name": "simRecoObs",
+            "parameters_of_interest": [
+                "truth"
+            ]
+        },
+        {
+            "domains": [
+                "simTruthObs_parameters_of_interest"
+            ],
+            "likelihood": "simTruthObs",
+            "name": "simTruthObs",
+            "parameters_of_interest": [
+                "reco"
+            ]
+        }
+    ],
+    "data": [
+        {
+            "axes": [
+                {
+                    "max": 200.0,
+                    "min": 0.0,
+                    "name": "reco",
+                    "value": 123.0
+                }
+            ],
+            "entries": [
+                [
+                    123.0
+                ]
+            ],
+            "name": "dataRecoObs_response",
+            "type": "unbinned"
+        },
+        {
+            "axes": [
+                {
+                    "max": 200.0,
+                    "min": 0.0,
+                    "name": "truth",
+                    "value": 118.0
+                }
+            ],
+            "entries": [
+                [
+                    118.0
+                ]
+            ],
+            "name": "dataTruthObs_response",
+            "type": "unbinned"
+        }
+    ],
+    "distributions": [
+        {
+            "mean": "truth",
+            "name": "response",
+            "sigma": "sigma",
+            "type": "gaussian_dist",
+            "x": "reco"
+        }
+    ],
+    "domains": [
+        {
+            "axes": [
+                {
+                    "max": 200.0,
+                    "min": 0.0,
+                    "name": "truth"
+                }
+            ],
+            "name": "simRecoObs_parameters_of_interest",
+            "type": "product_domain"
+        },
+        {
+            "axes": [
+                {
+                    "max": 200.0,
+                    "min": 0.0,
+                    "name": "reco"
+                }
+            ],
+            "name": "simTruthObs_parameters_of_interest",
+            "type": "product_domain"
+        },
+        {
+            "axes": [
+                {
+                    "max": 200.0,
+                    "min": 0.0,
+                    "name": "reco"
+                },
+                {
+                    "max": 200.0,
+                    "min": 0.0,
+                    "name": "truth"
+                }
+            ],
+            "name": "default_domain",
+            "type": "product_domain"
+        }
+    ],
+    "likelihoods": [
+        {
+            "data": [
+                "dataRecoObs_response"
+            ],
+            "distributions": [
+                "response"
+            ],
+            "name": "simRecoObs"
+        },
+        {
+            "data": [
+                "dataTruthObs_response"
+            ],
+            "distributions": [
+                "response"
+            ],
+            "name": "simTruthObs"
+        }
+    ],
+    "metadata": {
+        "hs3_version": "0.2",
+        "packages": [
+            {
+                "name": "ROOT",
+                "version": "6.41.01"
+            }
+        ]
+    },
+    "parameter_points": [
+        {
+            "name": "default_values",
+            "parameters": [
+                {
+                    "max": 200.0,
+                    "min": 0.0,
+                    "name": "reco",
+                    "value": 117.90295746036676
+                },
+                {
+                    "max": 200.0,
+                    "min": 0.0,
+                    "name": "truth",
+                    "value": 122.79775250246563
+                },
+                {
+                    "const": true,
+                    "name": "sigma",
+                    "value": 10.0
+                }
+            ]
+        }
+    ]
+}
