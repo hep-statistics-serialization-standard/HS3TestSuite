@@ -86,15 +86,22 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           token: ${{ github.token }}
           fetch-depth: 0
-
+      - uses: actions/checkout@v4
+        with:
+          repository: hep-statistics-serialization-standard/HS3TestSuiteCode
+          ref: master
+          token: ${{ github.token }}
+          path: .hs3suite
       - name: Generate fixtures
         id: generate-fixtures
         shell: bash
+        env:
+          HS3SUITE_DIR: ${{ github.workspace }}/.hs3suite
         run: |
           set -euo pipefail
           echo "Generating fixtures for ${{ matrix.dir }} using the reference backend image ${{ matrix.image }}"
           # Contract: every reference-backend image exposes a `generate-fixtures`
-          # executable on $PATH; see docs/reference-backend-contract.md.
+          # executable on $PATH; see HS3TestSuiteCode/docs/reference-backend-contract.md.
           generate-fixtures "$GITHUB_WORKSPACE/${{ matrix.dir }}"
 
       - name: Commit and push generated fixtures
