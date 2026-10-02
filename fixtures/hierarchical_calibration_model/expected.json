@@ -1,0 +1,120 @@
+{
+  "checks": [
+    {
+      "id": "static_integrity",
+      "kind": "static_integrity"
+    },
+    {
+      "id": "structure_import",
+      "kind": "structure_import",
+      "target": {
+        "data": [
+          "data_cell0",
+          "data_cell1",
+          "data_cell2",
+          "data_cell3",
+          "data_cell4"
+        ],
+        "functions": [],
+        "pdfs": [
+          "cellPrior0",
+          "cellPrior1",
+          "cellPrior2",
+          "cellPrior3",
+          "cellPrior4",
+          "cellSpreadPrior",
+          "measPdf0",
+          "measPdf1",
+          "measPdf2",
+          "measPdf3",
+          "measPdf4"
+        ]
+      }
+    },
+    {
+      "comparison": {
+        "rule": "|evaluated - expected| <= atol + rtol * |expected|",
+        "type": "pointwise_comp"
+      },
+      "expected": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "scan_globalScale",
+      "kind": "twice_delta_nll_scan",
+      "reference_point": {
+        "cellScale0": 1.0100911664193841,
+        "cellScale1": 1.0099943356872378,
+        "cellScale2": 1.010165321074955,
+        "cellScale3": 1.0100171684097072,
+        "cellScale4": 1.0100665405546252,
+        "cellSpread": 0.001000000005222462,
+        "cellSpreadPriorMean": 0.03,
+        "cellSpreadPriorSigma": 0.01,
+        "globalScale": 1.0100683977716425,
+        "measurementSigma": 0.02,
+        "x0": 1.02,
+        "x1": 0.98,
+        "x2": 1.05,
+        "x3": 0.99,
+        "x4": 1.01
+      },
+      "scan_parameters": [
+        "globalScale"
+      ],
+      "scan_points": [
+        [
+          0.95
+        ],
+        [
+          0.96
+        ],
+        [
+          0.97
+        ],
+        [
+          0.98
+        ],
+        [
+          0.99
+        ],
+        [
+          1.0
+        ],
+        [
+          1.01
+        ],
+        [
+          1.02
+        ],
+        [
+          1.03
+        ],
+        [
+          1.04
+        ],
+        [
+          1.05
+        ]
+      ],
+      "target": {
+        "likelihood": "model_data"
+      },
+      "tolerance": {
+        "atol": 1e-07,
+        "rtol": 1e-08
+      }
+    }
+  ],
+  "schema_version": 1,
+  "test_id": "hierarchical_calibration_model"
+}

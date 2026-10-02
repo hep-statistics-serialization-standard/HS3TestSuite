@@ -1,0 +1,441 @@
+{
+    "analyses": [
+        {
+            "domains": [
+                "model_data_nuisance_parameters",
+                "model_data_parameters_of_interest"
+            ],
+            "likelihood": "model_data",
+            "name": "model_data",
+            "parameters_of_interest": [
+                "globalScale"
+            ]
+        }
+    ],
+    "data": [
+        {
+            "axes": [
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "x0",
+                    "value": 1.02
+                }
+            ],
+            "entries": [
+                [
+                    1.02
+                ]
+            ],
+            "name": "data_cell0",
+            "type": "unbinned"
+        },
+        {
+            "axes": [
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "x1",
+                    "value": 0.98
+                }
+            ],
+            "entries": [
+                [
+                    0.98
+                ]
+            ],
+            "name": "data_cell1",
+            "type": "unbinned"
+        },
+        {
+            "axes": [
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "x2",
+                    "value": 1.05
+                }
+            ],
+            "entries": [
+                [
+                    1.05
+                ]
+            ],
+            "name": "data_cell2",
+            "type": "unbinned"
+        },
+        {
+            "axes": [
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "x3",
+                    "value": 0.99
+                }
+            ],
+            "entries": [
+                [
+                    0.99
+                ]
+            ],
+            "name": "data_cell3",
+            "type": "unbinned"
+        },
+        {
+            "axes": [
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "x4",
+                    "value": 1.01
+                }
+            ],
+            "entries": [
+                [
+                    1.01
+                ]
+            ],
+            "name": "data_cell4",
+            "type": "unbinned"
+        }
+    ],
+    "distributions": [
+        {
+            "mean": "globalScale",
+            "name": "cellPrior0",
+            "sigma": "cellSpread",
+            "type": "gaussian_dist",
+            "x": "cellScale0"
+        },
+        {
+            "mean": "globalScale",
+            "name": "cellPrior1",
+            "sigma": "cellSpread",
+            "type": "gaussian_dist",
+            "x": "cellScale1"
+        },
+        {
+            "mean": "globalScale",
+            "name": "cellPrior2",
+            "sigma": "cellSpread",
+            "type": "gaussian_dist",
+            "x": "cellScale2"
+        },
+        {
+            "mean": "globalScale",
+            "name": "cellPrior3",
+            "sigma": "cellSpread",
+            "type": "gaussian_dist",
+            "x": "cellScale3"
+        },
+        {
+            "mean": "globalScale",
+            "name": "cellPrior4",
+            "sigma": "cellSpread",
+            "type": "gaussian_dist",
+            "x": "cellScale4"
+        },
+        {
+            "mean": "cellSpreadPriorMean",
+            "name": "cellSpreadPrior",
+            "sigma": "cellSpreadPriorSigma",
+            "type": "gaussian_dist",
+            "x": "cellSpread"
+        },
+        {
+            "mean": "cellScale0",
+            "name": "measPdf0",
+            "sigma": "measurementSigma",
+            "type": "gaussian_dist",
+            "x": "x0"
+        },
+        {
+            "mean": "cellScale1",
+            "name": "measPdf1",
+            "sigma": "measurementSigma",
+            "type": "gaussian_dist",
+            "x": "x1"
+        },
+        {
+            "mean": "cellScale2",
+            "name": "measPdf2",
+            "sigma": "measurementSigma",
+            "type": "gaussian_dist",
+            "x": "x2"
+        },
+        {
+            "mean": "cellScale3",
+            "name": "measPdf3",
+            "sigma": "measurementSigma",
+            "type": "gaussian_dist",
+            "x": "x3"
+        },
+        {
+            "mean": "cellScale4",
+            "name": "measPdf4",
+            "sigma": "measurementSigma",
+            "type": "gaussian_dist",
+            "x": "x4"
+        }
+    ],
+    "domains": [
+        {
+            "axes": [
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "cellScale0"
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "cellScale1"
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "cellScale2"
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "cellScale3"
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "cellScale4"
+                },
+                {
+                    "max": 0.2,
+                    "min": 0.001,
+                    "name": "cellSpread"
+                }
+            ],
+            "name": "model_data_nuisance_parameters",
+            "type": "product_domain"
+        },
+        {
+            "axes": [
+                {
+                    "max": 1.2,
+                    "min": 0.8,
+                    "name": "globalScale"
+                }
+            ],
+            "name": "model_data_parameters_of_interest",
+            "type": "product_domain"
+        },
+        {
+            "axes": [
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "cellScale0"
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "cellScale1"
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "cellScale2"
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "cellScale3"
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "cellScale4"
+                },
+                {
+                    "max": 0.2,
+                    "min": 0.001,
+                    "name": "cellSpread"
+                },
+                {
+                    "max": 1.0,
+                    "min": 0.0001,
+                    "name": "cellSpreadPriorMean"
+                },
+                {
+                    "max": 1.0,
+                    "min": 0.0001,
+                    "name": "cellSpreadPriorSigma"
+                },
+                {
+                    "max": 1.2,
+                    "min": 0.8,
+                    "name": "globalScale"
+                },
+                {
+                    "max": 1.0,
+                    "min": 0.0001,
+                    "name": "measurementSigma"
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "x0"
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "x1"
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "x2"
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "x3"
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "x4"
+                }
+            ],
+            "name": "default_domain",
+            "type": "product_domain"
+        }
+    ],
+    "likelihoods": [
+        {
+            "aux_distributions": [
+                "cellSpreadPrior",
+                "cellPrior0",
+                "cellPrior1",
+                "cellPrior2",
+                "cellPrior3",
+                "cellPrior4"
+            ],
+            "data": [
+                "data_cell0",
+                "data_cell1",
+                "data_cell2",
+                "data_cell3",
+                "data_cell4"
+            ],
+            "distributions": [
+                "measPdf0",
+                "measPdf1",
+                "measPdf2",
+                "measPdf3",
+                "measPdf4"
+            ],
+            "name": "model_data"
+        }
+    ],
+    "metadata": {
+        "hs3_version": "0.2",
+        "packages": [
+            {
+                "name": "ROOT",
+                "version": "6.41.01"
+            }
+        ]
+    },
+    "parameter_points": [
+        {
+            "name": "default_values",
+            "parameters": [
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "cellScale0",
+                    "value": 1.0100911664193841
+                },
+                {
+                    "max": 1.2,
+                    "min": 0.8,
+                    "name": "globalScale",
+                    "value": 1.0100683977716425
+                },
+                {
+                    "max": 0.2,
+                    "min": 0.001,
+                    "name": "cellSpread",
+                    "value": 0.001000000005222462
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "cellScale1",
+                    "value": 1.0099943356872378
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "cellScale2",
+                    "value": 1.010165321074955
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "cellScale3",
+                    "value": 1.0100171684097072
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "cellScale4",
+                    "value": 1.0100665405546252
+                },
+                {
+                    "const": true,
+                    "name": "cellSpreadPriorMean",
+                    "value": 0.03
+                },
+                {
+                    "const": true,
+                    "name": "cellSpreadPriorSigma",
+                    "value": 0.01
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "x0",
+                    "value": 1.02
+                },
+                {
+                    "const": true,
+                    "name": "measurementSigma",
+                    "value": 0.02
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "x1",
+                    "value": 0.98
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "x2",
+                    "value": 1.05
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "x3",
+                    "value": 0.99
+                },
+                {
+                    "max": 1.5,
+                    "min": 0.5,
+                    "name": "x4",
+                    "value": 1.01
+                }
+            ]
+        }
+    ]
+}

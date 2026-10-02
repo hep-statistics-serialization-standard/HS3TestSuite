@@ -750,6 +750,44 @@
         "roofit_tutorial"
       ],
       "test_id": "rf703_effpdfprod"
+    },
+    {
+      "checks": [
+        "static_integrity",
+        "structure_import",
+        "scan_globalScale"
+      ],
+      "conformance": [
+        "HS3-Core"
+      ],
+      "features": {
+        "sections": [
+          "analyses",
+          "data",
+          "distributions",
+          "domains",
+          "likelihoods",
+          "parameter_points"
+        ],
+        "semantic": [
+          "gaussian",
+          "hierarchical"
+        ],
+        "types": [
+          "gaussian_dist",
+          "product_domain",
+          "unbinned"
+        ]
+      },
+      "hashes": {
+        "canonical_sha256": "6bdce061426000ae91ee60fcd15f254911953496e87184c02639b60601885985",
+        "sha256": "54591453476bd213df06d6048d585547804bc73d7f293916420cb46456d316c3"
+      },
+      "path": "fixtures/hierarchical_calibration_model",
+      "tags": [
+        "hierarchical_priors"
+      ],
+      "test_id": "hierarchical_calibration_model"
     }
   ],
   "generated_by": "tools/build_manifest_and_expected.py",
