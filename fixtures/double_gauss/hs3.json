@@ -1,0 +1,213 @@
+{
+    "distributions": [
+        {
+            "factors": ["g1","g2"],
+            "name": "prod",
+            "type": "product_dist"
+        },
+        {
+            "mean": "mu1",
+            "name": "g1",
+            "sigma": "sigma1",
+            "type": "gaussian_dist",
+            "x": "x"
+        },
+        {
+            "mean": "mu2",
+            "name": "g2",
+            "sigma": "sigma2",
+            "type": "gaussian_dist",
+            "x": "x"
+        }
+    ],
+    "functions":[], 
+    "data": [
+        {
+            "axes": [
+                {
+                    "max": 10.0,
+                    "min": -10.0,
+                    "name": "x",
+                    "value": 1.8448742587493427
+                }
+            ],
+            "entries": [
+                [
+                    -0.028567328469794262
+                ],
+                [
+                    -0.09758959924367261
+                ],
+                [
+                    0.8301414329794277
+                ],
+                [
+                    -0.18001364208465098
+                ],
+                [
+                    0.8853988033587967
+                ],
+                [
+                    -0.2791754160017632
+                ],
+                [
+                    1.168603380508273
+                ],
+                [
+                    2.290388749097474
+                ],
+                [
+                    0.18297688463530193
+                ],
+                [
+                    1.8448742587493427
+                ]
+            ],
+            "name": "toy",
+            "type": "unbinned"
+        }
+    ],
+    "likelihoods": [
+        {
+            "data": ["toy"],
+            "distributions": ["prod"],
+            "name": "likelihood"
+        }
+    ],
+    "domains": [
+        {
+            "axes": [
+                {"max": 5.0, "min": -5.0, "name": "mu1"},
+                {"max": 5.0, "min": -5.0, "name": "mu2"},
+                {"max": 10.0, "min": 0.1, "name": "sigma1"},
+                {"max": 10.0, "min": 0.1, "name": "sigma2"},
+                {"max": 10.0, "min": -10.0, "name": "x"}
+            ],
+            "name": "default_domain",
+            "type": "product_domain"
+        },
+        {
+            "axes": [
+                {"max": 5.0, "min": -5.0, "name": "mu2"},
+                {"max": 10.0, "min": 0.1, "name": "sigma1"},
+                {"max": 10.0, "min": 0.1, "name": "sigma2"}
+            ],
+            "name": "nuisance_parameters",
+            "type": "product_domain"
+        },
+        {
+            "axes": [{"max": 5.0, "min": -5.0, "name": "mu1"}],
+            "name": "parameters_of_interest",
+            "type": "product_domain"
+        }
+    ],
+    "parameter_points": [
+        {
+            "name": "default_values",
+            "parameters": [
+                {
+                    "max": 10.0,
+                    "min": -10.0,
+                    "name": "x",
+                    "value": 0.0
+                },
+                {
+                    "max": 5.0,
+                    "min": -5.0,
+                    "name": "mu1",
+                    "value": 0.0
+                },
+                {
+                    "max": 10.0,
+                    "min": 0.1,
+                    "name": "sigma1",
+                    "value": 1.0
+                },
+                {
+                    "max": 5.0,
+                    "min": -5.0,
+                    "name": "mu2",
+                    "value": 1.0
+                },
+                {
+                    "max": 10.0,
+                    "min": 0.1,
+                    "name": "sigma2",
+                    "value": 2.0
+                }
+            ]
+        },
+        {
+            "name": "nominal_poi",
+            "parameters": [
+                {
+                    "max": 5.0,
+                    "min": -5.0,
+                    "name": "mu1",
+                    "value": 0.0
+                }
+            ]
+        },
+        {
+            "name": "nominal_nuisance",
+            "parameters": [
+                {
+                    "max": 5.0,
+                    "min": -5.0,
+                    "name": "mu2",
+                    "value": 1.0
+                },
+                {
+                    "max": 10.0,
+                    "min": 0.1,
+                    "name": "sigma1",
+                    "value": 1.0
+                },
+                {
+                    "max": 10.0,
+                    "min": 0.1,
+                    "name": "sigma2",
+                    "value": 2.0
+                }
+            ]
+        },
+        {
+            "name": "ModelConfig__snapshot",
+            "parameters": [
+                {
+                    "max": 5.0,
+                    "min": -5.0,
+                    "name": "mu1",
+                    "value": 0.0
+                }
+            ]
+        }
+    ],
+    "analyses": [
+        {
+            "domains": [
+                "nuisance_parameters",
+                "parameters_of_interest"
+            ],
+            "likelihood": "likelihood",
+            "name": "my_analysis",
+            "parameters_of_interest": [
+                "mu1"
+            ]
+        }
+    ],
+    "metadata": {
+        "hs3_version": "0.2",
+        "packages": [
+            {
+                "name": "ROOT",
+                "version": "6.41.01"
+            }
+        ]
+    },
+    "misc":[]
+}
+
+
+
+
