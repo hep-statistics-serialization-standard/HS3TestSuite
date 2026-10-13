@@ -750,6 +750,45 @@
         "roofit_tutorial"
       ],
       "test_id": "rf703_effpdfprod"
+    },
+    {
+      "checks": [
+        "static_integrity",
+        "structure_import",
+        "scan_mu",
+        "scan_g1_mu1"
+      ],
+      "conformance": [
+        "HS3-Core"
+      ],
+      "features": {
+        "sections": [
+          "analyses",
+          "data",
+          "distributions",
+          "domains",
+          "functions",
+          "likelihoods",
+          "misc",
+          "parameter_points"
+        ],
+        "semantic": [],
+        "types": [
+          "gaussian_dist",
+          "product_dist",
+          "product_domain",
+          "unbinned"
+        ]
+      },
+      "hashes": {
+        "canonical_sha256": "fc416bf2c028076339fa501d7dce73ac80d967aac99e890ff8d0b75149d3509b",
+        "sha256": "c5e1fcbedfd3c18b992ad67c81b1522686e2d67d50a3782e8f8800d74794763a"
+      },
+      "path": "fixtures/double_gauss",
+      "tags": [
+        "hs3-paper"
+      ],
+      "test_id": "double_gauss"
     }
   ],
   "generated_by": "tools/build_manifest_and_expected.py",
