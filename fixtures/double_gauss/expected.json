@@ -1,0 +1,114 @@
+{
+  "checks": [
+    {
+      "id": "static_integrity",
+      "kind": "static_integrity"
+    },
+    {
+      "id": "structure_import",
+      "kind": "structure_import",
+      "target": {
+        "data": [
+          "toy"
+        ],
+        "functions": [],
+        "pdfs": [
+          "g1",
+          "g2",
+          "prod"
+        ]
+      }
+    },
+    {
+      "comparison": {
+        "rule": "|evaluated - expected| <= atol + rtol * |expected|",
+        "type": "pointwise_comp"
+      },
+      "expected": [
+        17.234076083064913,
+        15.38652105166674,
+        11.961408159097736
+      ],
+      "id": "scan_mu",
+      "kind": "twice_delta_nll_scan",
+      "reference_point": {
+        "mu1": 0.0,
+        "mu2": 1.0,
+        "sigma1": 1.0,
+        "sigma2": 2.0,
+        "x": 0.0
+      },
+      "scan_parameters": [
+        "mu1",
+        "mu2"
+      ],
+      "scan_points": [
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -0.9,
+          0.9
+        ],
+        [
+          -0.7,
+          0.7
+        ]
+      ],
+      "target": {
+        "likelihood": "likelihood"
+      },
+      "tolerance": {
+        "atol": 1e-07,
+        "rtol": 1e-08
+      }
+    },
+    {
+      "comparison": {
+        "rule": "|evaluated - expected| <= atol + rtol * |expected|",
+        "type": "pointwise_comp"
+      },
+      "expected": [
+        0.00013383022589692062,
+        0.004431848411943679,
+        0.0539909665131881
+      ],
+      "id": "scan_g1_mu1",
+      "kind": "pdf_scan",
+      "reference_point": {
+        "mu1": 0.0,
+        "mu2": 1.0,
+        "sigma1": 1.0,
+        "sigma2": 2.0,
+        "x": 0.0
+      },
+      "scan_parameters": [
+        "mu1"
+      ],
+      "scan_points": [
+        [
+          -4.0
+        ],
+        [
+          -3.0
+        ],
+        [
+          -2.0
+        ]
+      ],
+      "target": {
+        "observables": [
+          "x"
+        ],
+        "pdf": "g1"
+      },
+      "tolerance": {
+        "atol": 1e-12,
+        "rtol": 1e-08
+      }
+    }
+  ],
+  "schema_version": 1,
+  "test_id": "double_gauss"
+}
