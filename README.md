@@ -49,10 +49,6 @@ What each scan checks, and the comparison rules, are documented in
 
 ## License
 
-[MIT](LICENSE).
-
-The `rf*` fixtures are HS3 exports of models from the
-[ROOT RooFit tutorials](https://root.cern/doc/master/group__tutorial__roofit.html),
-adapted for this suite and relicensed under MIT with the agreement of the
-RooFit maintainers. Submitting a fixture means confirming that you have the
-right to share it under MIT.
+All fixtures in this repository are released under the [MIT License](LICENSE).
+Submitting a fixture means confirming that you have the right to share it
+under MIT.
