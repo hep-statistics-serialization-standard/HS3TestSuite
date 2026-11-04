@@ -750,6 +750,40 @@
         "roofit_tutorial"
       ],
       "test_id": "rf703_effpdfprod"
+    },
+    {
+      "checks": [
+        "static_integrity",
+        "structure_import"
+      ],
+      "conformance": [],
+      "features": {
+        "sections": [
+          "distributions",
+          "domains",
+          "functions",
+          "parameter_points"
+        ],
+        "semantic": [
+          "exponent",
+          "gaussian",
+          "truncated"
+        ],
+        "types": [
+          "exponential_dist",
+          "gaussian_dist",
+          "generic_function",
+          "mixture_dist",
+          "product_domain"
+        ]
+      },
+      "hashes": {
+        "canonical_sha256": "5927981b196e1bec1d9de28c3c1fb50bcde4115d9c747773982ef65e230d2ae3",
+        "sha256": "5927981b196e1bec1d9de28c3c1fb50bcde4115d9c747773982ef65e230d2ae3"
+      },
+      "path": "fixtures/time_per_toy_morefit",
+      "tags": [],
+      "test_id": "time_per_toy_morefit"
     }
   ],
   "generated_by": "tools/build_manifest_and_expected.py",
